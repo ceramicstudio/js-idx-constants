@@ -1,7 +1,8 @@
 {
   "name": "@ceramicstudio/idx-constants",
-  "version": "0.2.0",
-  "author": "Paul Le Cam",
+  "version": "0.2.1",
+  "author": "Ceramic Studio",
+  "homepage": "https://idx.xyz",
   "license": "(Apache-2.0 OR MIT)",
   "main": "dist/index.js",
   "module": "dist/idx-constants.esm.js",
@@ -23,13 +24,13 @@
     "analyze": "size-limit --why"
   },
   "devDependencies": {
-    "@ceramicstudio/idx-tools": "^0.2.1",
+    "@ceramicstudio/idx-tools": "^0.2.2",
     "@size-limit/preset-small-lib": "^4.6.0",
     "eslint-config-3box": "^0.2.0",
     "husky": "^4.3.0",
     "size-limit": "^4.6.0",
     "tsdx": "^0.14.0",
-    "tslib": "^2.0.2",
+    "tslib": "^2.0.3",
     "typescript": "^4.0.3"
   },
   "husky": {
