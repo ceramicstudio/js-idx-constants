@@ -1,13 +1,9 @@
-import { publishedDefinitions, publishedSchemas } from '@ceramicstudio/idx-tools'
-
 import { definitions, schemas } from '..'
 
-describe('lib', () => {
-  test('definitions', () => {
-    expect(definitions).toEqual(publishedDefinitions)
-  })
+test('definitions', () => {
+  expect(definitions).toBeDefined()
+})
 
-  test('schemas', () => {
-    expect(schemas).toEqual(publishedSchemas)
-  })
+test('schemas', () => {
+  expect(schemas).toBeDefined()
 })
