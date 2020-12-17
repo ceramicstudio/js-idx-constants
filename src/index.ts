@@ -1,26 +1,111 @@
 type PublishedRecord<K extends string> = Record<K, string>
 
-export type IDXDefinitionName = 'basicProfile' | 'cryptoAccounts' | 'threeIdKeychain'
-export type IDXPublishedDefinitions = PublishedRecord<IDXDefinitionName>
-
-export type IDXSchemaName =
-  | 'BasicProfile'
-  | 'CryptoAccounts'
-  | 'Definition'
-  | 'IdentityIndex'
-  | 'ThreeIdKeychain'
-export type IDXPublishedSchemas = PublishedRecord<IDXSchemaName>
-
-export const definitions: IDXPublishedDefinitions = {
-  basicProfile: 'kjzl6cwe1jw148f9c50cwrirkyvr5biw3qhkvnbq3u1u461695btvw7eb8hce88',
-  cryptoAccounts: 'kjzl6cwe1jw1490kh2uqjxafo4xy0oxtufuiscvplhoo8fqz3uonm1cwnfw0x5j',
-  threeIdKeychain: 'kjzl6cwe1jw145bf11kxl53d44cku4kxmycfgni4s3t9nnu2k9yx89h31y979o3'
+export type ImageMetadata = {
+  src: string
+  mimeType: string
+  width: number
+  height: number
+  size?: number
 }
 
-export const schemas: IDXPublishedSchemas = {
-  BasicProfile: 'ceramic://k3y52l7qbv1frygu0pp6pl6xzhs82oi61jflzh1jleootigaj8urmjtbn51hcm800',
+export type ImageSources = {
+  original: ImageMetadata
+  alternatives?: Array<ImageMetadata>
+}
+
+export type BasicProfile = {
+  name?: string
+  image?: ImageSources
+  description?: string
+  emoji?: string
+  background?: ImageSources
+  birthDate?: string
+  url?: string
+  gender?: string
+  homeLocation?: string
+  residenceCountry?: string
+  nationalities?: Array<string>
+  affiliations?: Array<string>
+}
+
+export type CryptoAccounts = Record<string, string>
+
+export type Definition<C extends Record<string, any> = Record<string, any>> = {
+  name: string
+  description: string
+  schema: string
+  url?: string
+  family?: string
+  config?: C
+}
+
+export type IdentityIndex = Record<string, string>
+
+export type JWERecipientHeader = {
+  alg: string
+  iv: string
+  tag: string
+  epk?: Record<string, any>
+  kid?: string
+}
+
+export type JWERecipient = {
+  header: JWERecipientHeader
+  encrypted_key: string
+}
+
+export type JWE = {
+  protected: string
+  iv: string
+  ciphertext: string
+  tag: string
+  aad?: string
+  recipients?: Array<JWERecipient>
+}
+
+export type WrappedJWE = { jwe: JWE }
+
+export type AuthData = {
+  id: WrappedJWE
+  pub: string
+  data: WrappedJWE
+}
+
+export type ThreeIdKeychain = {
+  authMap: Record<string, AuthData>
+  pastSeeds: Array<JWE>
+}
+
+export type SchemaTypes = {
+  BasicProfile: BasicProfile
+  CryptoAccounts: CryptoAccounts
+  Definition: Definition
+  IdentityIndex: IdentityIndex
+  ThreeIdKeychain: ThreeIdKeychain
+}
+export type SchemaName = keyof SchemaTypes
+export type SchemaType<K extends SchemaName> = SchemaTypes[K]
+export type PublishedSchemas = PublishedRecord<SchemaName>
+
+export const schemas: PublishedSchemas = {
+  BasicProfile: 'ceramic://k3y52l7qbv1frxjdr9qpn9ldvbxb0jg4eig7wtjkdu6gk84vyazw9j4txf4o6d2io',
   CryptoAccounts: 'ceramic://k3y52l7qbv1fry6z45y9s2w5npe0nyokbp0oiv1tdhvswhv07lb2v13zdz4i1bp4w',
   Definition: 'ceramic://k3y52l7qbv1frxhudkas7hj2z9l45y3w1nhejmj7ykoyrlukqwd160233l7qupp8g',
   IdentityIndex: 'ceramic://k3y52l7qbv1frxrcmx299lbnc5txfo4b7tls1rm5vf7luc34yuztc60tibruptp8g',
-  ThreeIdKeychain: 'ceramic://k3y52l7qbv1fry9hyxri5xfy3sx7izbxv66h8u5r53dbzplj9h3jm88fnrpa1qd4w'
+  ThreeIdKeychain: 'ceramic://k3y52l7qbv1frxmkffm32grvh1a3whxhbqfp3j7nqb1tot427m7zwvugwsaxzgd8g'
+}
+
+export type DefinitionTypes = {
+  basicProfile: BasicProfile
+  cryptoAccounts: CryptoAccounts
+  threeIdKeychain: ThreeIdKeychain
+}
+export type DefinitionName = keyof DefinitionTypes
+export type DefinitionType<K extends DefinitionName> = DefinitionTypes[K]
+export type PublishedDefinitions = PublishedRecord<DefinitionName>
+
+export const definitions: PublishedDefinitions = {
+  basicProfile: 'kjzl6cwe1jw14bdsytwychcd91fcc7xibfj8bc0r2h3w5wm8t6rt4dtlrotl1ou',
+  cryptoAccounts: 'kjzl6cwe1jw1490kh2uqjxafo4xy0oxtufuiscvplhoo8fqz3uonm1cwnfw0x5j',
+  threeIdKeychain: 'kjzl6cwe1jw149gqar58oykhrx2p8uignqlovg2r0bhirnlwgfm0764vnr21bv3'
 }
