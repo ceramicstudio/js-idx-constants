@@ -41,16 +41,8 @@ export type Definition<C extends Record<string, any> = Record<string, any>> = {
 
 export type IdentityIndex = Record<string, string>
 
-export type JWERecipientHeader = {
-  alg: string
-  iv: string
-  tag: string
-  epk?: Record<string, any>
-  kid?: string
-}
-
 export type JWERecipient = {
-  header: JWERecipientHeader
+  header: Record<string, any>
   encrypted_key: string
 }
 
@@ -92,7 +84,7 @@ export const schemas: PublishedSchemas = {
   CryptoAccounts: 'ceramic://k3y52l7qbv1fry6z45y9s2w5npe0nyokbp0oiv1tdhvswhv07lb2v13zdz4i1bp4w',
   Definition: 'ceramic://k3y52l7qbv1frxhudkas7hj2z9l45y3w1nhejmj7ykoyrlukqwd160233l7qupp8g',
   IdentityIndex: 'ceramic://k3y52l7qbv1frxrcmx299lbnc5txfo4b7tls1rm5vf7luc34yuztc60tibruptp8g',
-  ThreeIdKeychain: 'ceramic://k3y52l7qbv1frxmkffm32grvh1a3whxhbqfp3j7nqb1tot427m7zwvugwsaxzgd8g'
+  ThreeIdKeychain: 'ceramic://k3y52l7qbv1fry69sodu0hc4nwvzglaxxvy3l0xdw7v1o36gyu2dl9us472qh8veo'
 }
 
 export type DefinitionTypes = {
@@ -107,5 +99,5 @@ export type PublishedDefinitions = PublishedRecord<DefinitionName>
 export const definitions: PublishedDefinitions = {
   basicProfile: 'kjzl6cwe1jw14bdsytwychcd91fcc7xibfj8bc0r2h3w5wm8t6rt4dtlrotl1ou',
   cryptoAccounts: 'kjzl6cwe1jw1490kh2uqjxafo4xy0oxtufuiscvplhoo8fqz3uonm1cwnfw0x5j',
-  threeIdKeychain: 'kjzl6cwe1jw149gqar58oykhrx2p8uignqlovg2r0bhirnlwgfm0764vnr21bv3'
+  threeIdKeychain: 'kjzl6cwe1jw148786wkzw43y8jdqw3maliueon9regm5zp8hxh4gpk2gjg4dtyz'
 }
